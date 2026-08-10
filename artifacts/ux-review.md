@@ -1,29 +1,29 @@
 # User-experience review
 
-Desktop: Chrome 1440×900. Mobile: <<< FILL: "real device — iPhone/Android model" or "Chrome responsive mode, 390×844" — state which >>>
+Desktop: Chrome 1440×900. Mobile: Android phone, Chrome (real device).
 
 ## What works
 
-The pre-login agent answers immediately without an account, which is the right call: the product demonstrates itself before it asks for anything. Replies stream, and the send control becoming a stop control gives clear, honest feedback that generation is in progress — many chat products leave you guessing. Per-reply feedback controls are present from the first answer.
+The pre-login agent answers without an account, so the product demonstrates itself before asking for anything. The send control becoming a stop control is honest feedback that generation is running.
+
+Mobile gets right two things chat UIs usually break: the keyboard clips only the header, never the input or latest reply, and the transcript auto-scrolls as a reply lands.
 
 ## What's rough
 
-**Interruption leaves no path forward.** Stopping a reply surfaces "Response stopped!" — but <<< FILL: does the partial answer stay in the transcript or vanish? Is there a regenerate/continue option? >>>. A user who stopped a reply because it was going the wrong way has no obvious next move.
+**Stopping a reply throws the whole answer away.** Stop does not keep the partial text — the response disappears entirely, leaving only "Generation stopped!". Users usually stop because a reply is long, not wrong; here they lose everything generated and start over. The tokens are spent either way.
 
-**Email verification is a dead end with no feedback loop.** Signup ends on "follow the link we just sent". Pressing *Resend Verification Email* changes the screen only by appending a line about checking spam — no confirmation that a second email actually went, no cooldown, no countdown. A user who does not receive the first email cannot tell whether pressing the button did anything, so they press it repeatedly. This is the last step before an activated account, so every drop here is a fully-acquired user lost.
+**Email verification is a dead end.** Signup ends on "follow the link we just sent". *Resend Verification Email* only appends a line about checking spam — no confirmation the mail went, no cooldown, no address shown. Users cannot tell the button did anything, so they press it repeatedly. This is the last step before an account is activated.
 
-**Pre-login work is orphaned by signup.** <<< FILL: after verifying and logging in, is the pre-login conversation still there? >>> If it is discarded, the strongest moment of intent — a user who just got a good answer and signed up because of it — restarts from an empty screen.
+**Signup discards the pre-login conversation.** After verifying and logging in, the earlier chat is gone. The strongest moment of intent — someone who signed up because an answer landed — meets an empty screen.
 
-## Mobile
-
-<<< FILL — 10 minutes on a phone. Check: does the on-screen keyboard cover the input or the latest reply? Does the transcript auto-scroll as text streams, or do you have to chase it? Do the suggested topics overflow sideways? Is the stop button reachable one-handed? Does the referral link truncate? >>>
+**Suggested topics stack vertically on mobile.** No sideways overflow, but the stack consumes most of the first screen, pushing the input down and burying the fact that free-text input exists.
 
 ## Prioritised improvements
 
-**1. Confirm and rate-limit the verification resend.** Observation and impact above. Change: a toast confirming the send, the button disabled with a 30-second countdown, and the destination address shown so a typo is visible. Measure: verification completion rate, and resend presses per account.
+**1. Confirm and rate-limit the verification resend.** This gates activation, so every drop is a fully-acquired user lost. Change: a toast confirming the send, the button disabled with a 30-second countdown, the destination address shown so typos are visible. Measure: verification completion rate; resend presses per account.
 
-**2. Carry the pre-login conversation into the new account.** Change: bind the anonymous session to the user record at signup and restore the transcript on first authenticated load. Measure: day-one return rate for users who chatted before signing up.
+**2. Keep the partial text when a reply is stopped.** Mark it stopped and offer to regenerate. Affects every user who stops, and discards work already paid for. Measure: share of stopped replies followed by another message rather than abandonment.
 
-**3. Give a stopped reply somewhere to go.** Change: keep the partial text, mark it stopped, and offer regenerate. Measure: share of stopped replies followed by another message rather than abandonment.
+**3. Carry the pre-login conversation into the new account.** Bind the anonymous session to the user record at signup and restore the transcript on first authenticated load. Measure: day-one return rate for users who chatted before signing up.
 
-**4.** <<< FILL: your strongest mobile finding, phrased the same way — observation, why it matters, what you'd change, what you'd measure. >>>
+**4. Collapse the mobile topic list.** Show two or three pills with a "more" affordance so the input sits above the fold. Measure: share of mobile sessions using free-text input rather than pills alone.
