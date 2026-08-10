@@ -4,26 +4,28 @@ Desktop: Chrome 1440×900. Mobile: Android phone, Chrome (real device).
 
 ## What works
 
-The pre-login agent answers without an account, so the product demonstrates itself before asking for anything. The send control becoming a stop control is honest feedback that generation is running.
+The agent answers pre-login, so the product demonstrates itself before asking for anything. The send control becoming a stop control is honest feedback that generation is running, and referral sharing uses the native share sheet rather than reinventing it.
 
-Mobile gets right two things chat UIs usually break: the keyboard clips only the header, never the input or latest reply, and the transcript auto-scrolls as a reply lands.
+Mobile gets right two things chat UIs usually break: the keyboard clips only the header, never the input or latest reply, and the transcript auto-scrolls as replies land.
 
 ## What's rough
 
-**Stopping a reply throws the whole answer away.** Stop does not keep the partial text — the response disappears entirely, leaving only "Generation stopped!". Users usually stop because a reply is long, not wrong; here they lose everything generated and start over. The tokens are spent either way.
+**The referral link is `http://`, not `https://`.** The share sheet emits `http://ask.permission.ai/register?rc=...`. For a product whose pitch is that users own their data, shipping the growth loop over plaintext is a credibility problem before a technical one.
 
-**Email verification is a dead end.** Signup ends on "follow the link we just sent". *Resend Verification Email* only appends a line about checking spam — no confirmation the mail went, no cooldown, no address shown. Users cannot tell the button did anything, so they press it repeatedly. This is the last step before an account is activated.
+**Stopping a reply throws the answer away.** Stop discards the partial text entirely, leaving only "Generation stopped!". Users usually stop because a reply is long, not wrong; they lose everything generated. Tokens are spent either way.
 
-**Signup discards the pre-login conversation.** After verifying and logging in, the earlier chat is gone. The strongest moment of intent — someone who signed up because an answer landed — meets an empty screen.
+**Email verification is a dead end.** Signup ends on "follow the link we just sent". *Resend Verification Email* only appends a line about spam — no confirmation, no cooldown, no address shown. Users cannot tell it did anything, so they press it repeatedly.
 
-**Suggested topics stack vertically on mobile.** No sideways overflow, but the stack consumes most of the first screen, pushing the input down and burying the fact that free-text input exists.
+**Signup discards the pre-login conversation** — someone who signed up because an answer landed meets an empty screen. On mobile, **suggested topics stack vertically,** consuming the first screen and burying the free-text input.
 
 ## Prioritised improvements
 
-**1. Confirm and rate-limit the verification resend.** This gates activation, so every drop is a fully-acquired user lost. Change: a toast confirming the send, the button disabled with a 30-second countdown, the destination address shown so typos are visible. Measure: verification completion rate; resend presses per account.
+**1. Serve the referral link over HTTPS.** Cheapest fix here, highest downside if left: it sits in the acquisition path and contradicts the brand promise. Measure: zero `http://` links emitted; referral click-through.
 
-**2. Keep the partial text when a reply is stopped.** Mark it stopped and offer to regenerate. Affects every user who stops, and discards work already paid for. Measure: share of stopped replies followed by another message rather than abandonment.
+**2. Confirm and rate-limit the verification resend.** This gates activation, so every drop is a fully-acquired user lost. Change: a confirmation toast, a 30-second countdown, and the destination address shown so typos are visible. Measure: verification completion rate; resends per account.
 
-**3. Carry the pre-login conversation into the new account.** Bind the anonymous session to the user record at signup and restore the transcript on first authenticated load. Measure: day-one return rate for users who chatted before signing up.
+**3. Keep the partial text when a reply is stopped.** Mark it stopped, offer regenerate. Affects every user who stops, and discards work already paid for. Measure: stopped replies followed by another message rather than abandonment.
 
-**4. Collapse the mobile topic list.** Show two or three pills with a "more" affordance so the input sits above the fold. Measure: share of mobile sessions using free-text input rather than pills alone.
+**4. Carry the pre-login conversation into the new account.** Bind the anonymous session to the user record at signup and restore it on first authenticated load. Measure: day-one return rate for pre-signup chatters.
+
+**5. Collapse the mobile topic list** behind a "more" affordance so the input sits above the fold. Measure: mobile sessions using free-text input.
