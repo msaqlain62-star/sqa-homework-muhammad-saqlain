@@ -51,9 +51,9 @@ Ask for a `data-testid` on the suggested-topic pills and on the message bubbles,
 - [x] Max 8 tests; all 4 required behaviours covered
 - [x] `artifacts/assertions.md` included (≤ 300 words)
 - [x] At least one assertion wired into an evaluation framework and running as part of the suite
-- [ ] `artifacts/ux-review.md` included (≤ 400 words, desktop + mobile, post-signup exploration, 3–5 prioritized improvements)
+- [x] `artifacts/ux-review.md` included (≤ 400 words, desktop + mobile, post-signup exploration, 3–5 prioritized improvements)
 - [x] `artifacts/data-checks.md` included (≤ 300 words + SQL)
-- [ ] `artifacts/ai-workflow.md` included (≤ 300 words, all 4 questions answered)
-- [ ] `artifacts/report/` included
-- [ ] `artifacts/demo.mp4` included (60–90 sec, narrated)
-- [ ] Commit history shows how the work evolved
+- [x] `artifacts/ai-workflow.md` included (≤ 300 words, all 4 questions answered)
+- [x] `artifacts/report/` included
+- [x] `artifacts/demo.mp4` included (60–90 sec, narrated)
+- [x] Commit history shows how the work evolved
