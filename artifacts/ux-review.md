@@ -20,12 +20,12 @@ Mobile gets right two things chat UIs usually break: the keyboard clips only the
 
 ## Prioritised improvements
 
-**1. Serve the referral link over HTTPS.** Cheapest fix here, highest downside if left: it sits in the acquisition path and contradicts the brand promise. Measure: zero `http://` links emitted; referral click-through.
+**1. Confirm and rate-limit the verification resend.** Observation and impact above. Change: a toast confirming the send, the button disabled with a 30-second countdown, and the destination address shown so a typo is visible. Measure: verification completion rate, and resend presses per account.
 
-**2. Confirm and rate-limit the verification resend.** This gates activation, so every drop is a fully-acquired user lost. Change: a confirmation toast, a 30-second countdown, and the destination address shown so typos are visible. Measure: verification completion rate; resends per account.
+**2. Carry the pre-login conversation into the new account.** Change: bind the anonymous session to the user record at signup and restore the transcript on first authenticated load. Measure: day-one return rate for users who chatted before signing up.
 
-**3. Keep the partial text when a reply is stopped.** Mark it stopped, offer regenerate. Affects every user who stops, and discards work already paid for. Measure: stopped replies followed by another message rather than abandonment.
+**3. Give a stopped reply somewhere to go.** Change: keep the partial text, mark it stopped, and offer regenerate. Measure: share of stopped replies followed by another message rather than abandonment.
 
-**4. Carry the pre-login conversation into the new account.** Bind the anonymous session to the user record at signup and restore it on first authenticated load. Measure: day-one return rate for pre-signup chatters.
+**4.** <<< FILL: your strongest mobile finding, phrased the same way — observation, why it matters, what you'd change, what you'd measure. >>>
 
 **5. Collapse the mobile topic list** behind a "more" affordance so the input sits above the fold. Measure: mobile sessions using free-text input.
